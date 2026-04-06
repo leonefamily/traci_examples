@@ -40,7 +40,7 @@ python "C:\path\to\pt_priority.py" --sumo-config-path "C:\Users\User\config.sumo
 ```sh
 python3 "path/to/pt_priority.py" --help
 ```
-## Command Arguments
+
 | Argument | Description                                                                                                                       | Example                                       |
 | :--- |:----------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------|
 | `--sumo-config-path` | **Required**: Path to the configuration file                                                                                      | `--sumo-config-path /etc/sumo/config.sumocfg` |
