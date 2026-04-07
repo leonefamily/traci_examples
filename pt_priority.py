@@ -109,7 +109,7 @@ def parse_arguments() -> argparse.Namespace:
             "TLS are not accepted when the other one is active"
         )
     )
-    
+
     args = parser.parse_args()
 
     prefer_lines_list = [
@@ -250,13 +250,15 @@ def main(
                         requests[tls_id].append({
                             'request_id': next_request_id, # ID pro jednoznacnou identifikaci pozadavku
                             'vehicle_id': vehicle_id, # ID pozadujiciho vozidla
-                            'start_time': step,  # kdy pozadavek vznikl
-                            'expiry_time': step + request_blocking_duration,  # kdy ma byt pozadavek vymazan
+                            'start_time': step - request_blocking_duration,  # kdy pozadavek vznikl + ochrana pred prehozenim
+                            'expiry_time': step + 5 + request_blocking_duration,  # kdy ma byt pozadavek vymazan
                             'instructions': {
                                  # prepnuti stavajiciho pozadavku na zlutou
                                  step: current_phase + 1,
                                  # nabeh cervene se zlutou pro preferovany smer
                                  step + 3: green_phase - 1,
+                                 # zelena pro preferovany smer
+                                 step + 5: green_phase,
                              }
                         })
                         # navysime ID o 1 pro pripadny pristi pozadavek
